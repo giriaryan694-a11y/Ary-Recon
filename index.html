@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARY Recon - Passive Reconnaissance Tools</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            padding: 30px 0;
+        }
+        
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+        
+        .category-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .category-section h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .tool-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid #667eea;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .tool-card h3 {
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 1.2em;
+        }
+        
+        .tool-card p {
+            color: #555;
+            font-size: 0.95em;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        
+        .tool-card a {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: background 0.3s ease;
+        }
+        
+        .tool-card a:hover {
+            background: #764ba2;
+        }
+        
+        footer {
+            background: rgba(0,0,0,0.3);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+            font-size: 1.1em;
+        }
+        
+        footer p {
+            margin: 5px 0;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #764ba2;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔍 ARY Recon</h1>
+            <p>Comprehensive Web-Based Passive Reconnaissance Tools Directory</p>
+        </header>
+        
+        <!-- Subdomain & Certificate Discovery -->
+        <div class="category-section">
+            <h2>🌐 Subdomain & Certificate Discovery</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="badge">Certificate DB</div>
+                    <h3>crt.sh</h3>
+                    <p>Certificate Transparency database search - find subdomains from SSL certificates</p>
+                    <a href="https://crt.sh" target="_blank">Visit Tool →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="badge">ASM</div>
+                    <h3>Censys</h3>
+                    <p>Attack surface management - search engine for internet devices and certificates</p>
+                    <a href="https://censys.com" target="_blank">Visit Tool →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="badge">Intelligence</div>
+                    <h3>Netlas</h3>
+                    <p>Internet intelligence platform - find domains, IPs, DNS records, open ports, services</p>
+                    <a href="https://netlas.io" target="_blank">Visit Tool →</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Technology Fingerprinting -->
+        <div class="category-section">
+            <h2>🔧 Technology Fingerprinting & HackerTarget</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="badge">Multi-Tool Suite</div>
+                    <h3>HackerTarget</h3>
+                    <p>Complete suite of online security tools - OSINT, scanning, DNS lookup, reverse DNS, traceroute, and more</p>
+                    <a href="https://hackertarget.com" target="_blank">Visit Tool →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="badge">Fingerprinting</div>
+                    <h3>WhatWeb</h3>
+                    <p>Detect web technologies, applications, and web servers</p>
+                    <a href="https://hackertarget.com/whatweb-scan" target="_blank">Visit Tool →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="badge">Tech Stack</div>
+                    <h3>Wappalyzer</h3>
+                    <p>Identify technologies and frameworks used on websites</p>
+                    <a href="https://www.wappalyzer.com" target="_blank">Visit Tool →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="badge">Profiling</div>
+                    <h3>BuiltWith</h3>
+                    <p>Technology profiling and website analysis</p>
+                    <a href="https://builtwith.com" target="_blank">Visit Tool →</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Email & Personnel Discovery -->
+        <div class="category-section">
+            <h2>👥 Email & Personnel Discovery</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="badge">Email Finding</div>
+                    <h3>Hunter.io</h3>
+                    <p>Find company employee email addresses exposed online</p>
+                    <a href="https://hunter.io" target="_blank">Visit Tool →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="badge">Contact DB</div>
+                    <h3>RocketReach</h3>
+                    <p>Professional database - email and contact discovery</p>
+                    <a href="https://rocketreach.co" target="_blank">Visit Tool →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="badge">Email Verification</div>
+                    <h3>Email Finder Tools</h3>
+                    <p>Verify and find email addresses</p>
+                    <a href="https://mailtester.com" target="_blank">Visit Tool →</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- WHOIS & DNS -->
+        <div class="category-section">
+            <h2>📋 WHOIS & DNS Information</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="badge">Domain Lookup</div>
+                    <h3>Whois.net</h3>
+                    <p>Quick WHOIS lookups for domain registration details</p>
+                    <a href="https://whois.net" target="_blank">Visit Tool →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="badge">Official Registry</div>
+                    <h3>ICANN WHOIS</h3>
+                    <p>Official ICANN domain registry lookup</p>
+                    <a href="https://lookup.icann.org" target="_blank">Visit Tool →</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- IP & Network Intelligence -->
+        <div class="category-section">
+            <h2>🌍 IP & Network Intelligence</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="badge">BGP Routing</div>
+                    <h3>BGP.he.net</h3>
+                    <p>BGP routing information, AS number lookup, IP prefix analysis, and network infrastructure mapping</p>
+                    <a href="https://bgp.he.net" target="_blank">Visit Tool →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="badge">Device Search</div>
+                    <h3>Shodan</h3>
+                    <p>Search engine for internet-connected devices and services</p>
+                    <a href="https://www.shodan.io" target="_blank">Visit Tool →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="badge">IP Analysis</div>
+                    <h3>IP Quality Score</h3>
+                    <p>IP address investigation and reputation check</p>
+                    <a href="https://www.ipqualityscore.com" target="_blank">Visit Tool →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="badge">Geolocation</div>
+                    <h3>IPinfo</h3>
+                    <p>IP geolocation and organization data</p>
+                    <a href="https://ipinfo.io" target="_blank">Visit Tool →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="badge">Abuse Reports</div>
+                    <h3>AbuseIPDB</h3>
+                    <p>Check IP reputation and abuse reports</p>
+                    <a href="https://www.abuseipdb.com" target="_blank">Visit Tool →</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Historical Data & Archives -->
+        <div class="category-section">
+            <h2>📚 Historical Data & Archives</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="badge">Web Archive</div>
+                    <h3>Wayback Machine</h3>
+                    <p>Historical snapshots of websites over time</p>
+                    <a href="https://web.archive.org" target="_blank">Visit Tool →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="badge">URL Scanning</div>
+                    <h3>URLScan</h3>
+                    <p>URL and website scanning with screenshot captures</p>
+                    <a href="https://urlscan.io" target="_blank">Visit Tool →</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Comprehensive OSINT Platforms -->
+        <div class="category-section">
+            <h2>🎯 Comprehensive OSINT Platforms</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="badge">OSINT Hub</div>
+                    <h3>ARY OSINT</h3>
+                    <p>Comprehensive, well-organized directory and centralized launcher of OSINT tools, resources, and research materials for security researchers</p>
+                    <a href="https://giriaryan694-a11y.github.io/ary.osint/" target="_blank">Visit Tool →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="badge">Pentest Suite</div>
+                    <h3>Pentest-Tools</h3>
+                    <p>All-in-one penetration testing suite with passive reconnaissance, network scanning, and security analysis tools</p>
+                    <a href="https://pentest-tools.com" target="_blank">Visit Tool →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="badge">Visualization</div>
+                    <h3>Maltego</h3>
+                    <p>Data visualization and OSINT platform (web version available)</p>
+                    <a href="https://www.maltego.com" target="_blank">Visit Tool →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="badge">Automation</div>
+                    <h3>SpiderFoot</h3>
+                    <p>Automated OSINT scanning and data collection</p>
+                    <a href="https://www.spiderfoot.net" target="_blank">Visit Tool →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="badge">Framework</div>
+                    <h3>theHarvester</h3>
+                    <p>Email, subdomain, and host discovery (requires installation, but web interfaces available)</p>
+                    <a href="https://github.com/laramies/theHarvester" target="_blank">Visit Tool →</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Malware & File Analysis -->
+        <div class="category-section">
+            <h2>🦠 Malware & File Analysis</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="badge">Multi-Engine</div>
+                    <h3>VirusTotal</h3>
+                    <p>Analyze files, URLs, and domains for malware using 90+ antivirus engines</p>
+                    <a href="https://www.virustotal.com" target="_blank">Visit Tool →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="badge">Interactive Sandbox</div>
+                    <h3>ANY.RUN</h3>
+                    <p>Interactive malware sandbox - execute and analyze suspicious files in real-time</p>
+                    <a href="https://any.run" target="_blank">Visit Tool →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="badge">Behavioral Analysis</div>
+                    <h3>Hybrid Analysis</h3>
+                    <p>Automated malware analysis platform with behavioral insights</p>
+                    <a href="https://www.hybrid-analysis.com" target="_blank">Visit Tool →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="badge">Advanced Sandbox</div>
+                    <h3>Joe Sandbox</h3>
+                    <p>Advanced malware analysis sandbox with detailed behavioral reports</p>
+                    <a href="https://www.joesandbox.com" target="_blank">Visit Tool →</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Reputation & Breach Checking -->
+        <div class="category-section">
+            <h2>🔐 Reputation & Breach Checking</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="badge">OSINT Hub</div>
+                    <h3>ARY OSINT</h3>
+                    <p>Comprehensive, well-organized directory and centralized launcher of OSINT tools for security professionals</p>
+                    <a href="https://giriaryan694-a11y.github.io/ary.osint/" target="_blank">Visit Tool →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="badge">Breach DB</div>
+                    <h3>Have I Been Pwned</h3>
+                    <p>Check if email has been in data breaches</p>
+                    <a href="https://haveibeenpwned.com" target="_blank">Visit Tool →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="badge">Leaked Data</div>
+                    <h3>DeHashed</h3>
+                    <p>Search leaked database records (paid)</p>
+                    <a href="https://www.dehashed.com" target="_blank">Visit Tool →</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Search & Hacking Database -->
+        <div class="category-section">
+            <h2>🔎 Search & Hacking Database</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="badge">Google Dorks</div>
+                    <h3>Google Hacking Database</h3>
+                    <p>Curated collection of Google dorks for passive information gathering</p>
+                    <a href="https://www.exploit-db.com/google-hacking-database" target="_blank">Visit Tool →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="badge">Advanced Search</div>
+                    <h3>Shodan Filters</h3>
+                    <p>Advanced search syntax for finding specific assets</p>
+                    <a href="https://www.shodan.io" target="_blank">Visit Tool →</a>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>🛡️ ARY Recon - Your Complete Passive Reconnaissance Toolkit</p>
+            <p>⚠️ Use responsibly and ethically. Always verify authorization before conducting reconnaissance.</p>
+            <p style="margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 15px;">Made By Aryan Giri</p>
+        </footer>
+    </div>
+</body>
+</html>
