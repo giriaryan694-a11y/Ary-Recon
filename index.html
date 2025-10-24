@@ -3,512 +3,527 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARY Recon - Passive Reconnaissance Tools</title>
+    <title>RedTeam Arsenal - Pentest Cheatsheets Hub</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #0a0015 0%, #1a0033 50%, #0f0020 100%);
+            color: #00ff88;
             min-height: 100vh;
-            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
         }
-        
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 20, 147, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(0, 255, 136, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
         }
-        
+
         header {
             text-align: center;
-            color: white;
-            margin-bottom: 40px;
-            padding: 30px 0;
+            margin-bottom: 50px;
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid #00ff88;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.3),
+                        inset 0 0 20px rgba(0, 255, 136, 0.1);
+            animation: glowPulse 3s ease-in-out infinite;
         }
-        
-        header h1 {
-            font-size: 3em;
+
+        @keyframes glowPulse {
+            0%, 100% {
+                box-shadow: 0 0 30px rgba(0, 255, 136, 0.3),
+                            inset 0 0 20px rgba(0, 255, 136, 0.1);
+            }
+            50% {
+                box-shadow: 0 0 50px rgba(0, 255, 136, 0.5),
+                            inset 0 0 30px rgba(0, 255, 136, 0.2);
+            }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            color: #00ff88;
+            text-shadow: 0 0 20px #00ff88, 0 0 40px #ff1493;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 2px;
+            animation: titleGlow 2s ease-in-out infinite;
         }
-        
-        header p {
+
+        @keyframes titleGlow {
+            0%, 100% {
+                text-shadow: 0 0 20px #00ff88, 0 0 40px #ff1493;
+                color: #00ff88;
+            }
+            50% {
+                text-shadow: 0 0 40px #00ff88, 0 0 60px #ff1493;
+                color: #00ffff;
+            }
+        }
+
+        .tagline {
             font-size: 1.2em;
-            opacity: 0.95;
+            color: #ff1493;
+            font-style: italic;
+            text-shadow: 0 0 10px #ff1493;
         }
-        
-        .category-section {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
+        .sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
         }
-        
-        .category-section h2 {
-            color: #667eea;
-            font-size: 1.8em;
+
+        .card {
+            background: rgba(20, 0, 40, 0.9);
+            border: 2px solid #00ff88;
+            border-radius: 8px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 20, 147, 0.1) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+
+        .card:hover {
+            border-color: #ff1493;
+            box-shadow: 0 0 40px rgba(255, 20, 147, 0.5),
+                        inset 0 0 20px rgba(255, 20, 147, 0.1);
+            transform: translateY(-5px);
+            background: rgba(30, 0, 60, 0.95);
+        }
+
+        .card h2 {
+            color: #ff1493;
             margin-bottom: 20px;
-            border-bottom: 3px solid #667eea;
+            font-size: 1.8em;
+            text-shadow: 0 0 10px #ff1493;
+            position: relative;
+            z-index: 1;
+            border-bottom: 2px solid #00ff88;
             padding-bottom: 10px;
         }
-        
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+
+        .card ul {
+            list-style: none;
+            position: relative;
+            z-index: 1;
         }
-        
-        .tool-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-radius: 8px;
-            padding: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-left: 4px solid #667eea;
-        }
-        
-        .tool-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
-        }
-        
-        .tool-card h3 {
-            color: #667eea;
-            margin-bottom: 8px;
-            font-size: 1.2em;
-        }
-        
-        .tool-card p {
-            color: #555;
-            font-size: 0.95em;
+
+        .card li {
             margin-bottom: 12px;
-            line-height: 1.5;
+            padding-left: 20px;
+            transition: all 0.2s ease;
         }
-        
-        .tool-card a {
-            display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 5px;
+
+        .card li::before {
+            content: '▸';
+            color: #ff1493;
+            margin-right: 10px;
+            margin-left: -20px;
+            font-size: 1.2em;
+            transition: all 0.2s ease;
+        }
+
+        .card a {
+            color: #00ff88;
             text-decoration: none;
-            font-size: 0.9em;
-            transition: background 0.3s ease;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid transparent;
         }
-        
-        .tool-card a:hover {
-            background: #764ba2;
+
+        .card a:hover {
+            color: #ff1493;
+            text-shadow: 0 0 10px #ff1493;
+            border-bottom: 1px solid #ff1493;
+            padding-right: 5px;
         }
-        
+
+        .card li:hover {
+            padding-left: 30px;
+            color: #00ffff;
+        }
+
         footer {
-            background: rgba(0,0,0,0.3);
-            color: white;
             text-align: center;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 40px;
-            font-size: 1.1em;
+            padding: 30px 20px;
+            border-top: 2px solid #00ff88;
+            margin-top: 50px;
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
         }
-        
-        footer p {
-            margin: 5px 0;
-        }
-        
-        .badge {
-            display: inline-block;
-            background: #764ba2;
-            color: white;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.8em;
+
+        .footer-text {
+            font-size: 1.3em;
+            color: #ff1493;
+            text-shadow: 0 0 15px #ff1493,
+                         0 0 30px #00ff88;
             margin-bottom: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .footer-repo {
+            font-size: 0.9em;
+            color: #00ff88;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .tagline {
+                font-size: 1em;
+            }
+
+            .sections {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .card h2 {
+                font-size: 1.4em;
+            }
+
+            header {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .tagline {
+                font-size: 0.9em;
+            }
+
+            .card h2 {
+                font-size: 1.2em;
+            }
+
+            .card {
+                padding: 15px;
+            }
+
+            .footer-text {
+                font-size: 1em;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🔍 ARY Recon</h1>
-            <p>Comprehensive Web-Based Passive Reconnaissance Tools Directory</p>
+            <h1>🎯 RedTeam Arsenal</h1>
+            <p class="tagline">Your Ultimate Pentest & Red Team Cheatsheets Hub</p>
         </header>
-        
-        <!-- OSINT Hub -->
-        <div class="category-section">
-            <h2>🎯 OSINT Intelligence Hub</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <div class="badge">OSINT Directory</div>
-                    <h3>ARY OSINT</h3>
-                    <p>Comprehensive, well-organized directory and centralized launcher of OSINT tools, resources, and research materials for security researchers and cybersecurity professionals</p>
-                    <a href="https://giriaryan694-a11y.github.io/ary.osint/" target="_blank">Visit Tool →</a>
-                </div>
+
+        <div class="sections">
+            <!-- Web Application Security -->
+            <div class="card">
+                <h2>🌐 Web Application Security</h2>
+                <ul>
+                    <li><a href="https://portswigger.net/web-security/cross-site-scripting/cheat-sheet" target="_blank">XSS Cheatsheet</a></li>
+                    <li><a href="https://portswigger.net/web-security/sql-injection/cheat-sheet" target="_blank">SQL Injection Cheatsheet</a></li>
+                    <li><a href="https://portswigger.net/web-security/request-smuggling/cheat-sheet" target="_blank">Request Smuggling Cheatsheet</a></li>
+                    <li><a href="https://portswigger.net/web-security/xxe/cheat-sheet" target="_blank">XXE Cheatsheet</a></li>
+                    <li><a href="https://portswigger.net/web-security/authentication/password-based/cheat-sheet" target="_blank">Authentication Cheatsheet</a></li>
+                    <li><a href="https://payload.all.in/" target="_blank">Payload Cheatsheets</a></li>
+                    <li><a href="https://owasp.org/Top10/" target="_blank">OWASP Top 10</a></li>
+                </ul>
+            </div>
+
+            <!-- Network & Infrastructure -->
+            <div class="card">
+                <h2>🔧 Network & Infrastructure</h2>
+                <ul>
+                    <li><a href="https://nmap.org/docs/" target="_blank">Nmap Reference</a></li>
+                    <li><a href="https://github.com/danielmiessler/SecLists" target="_blank">SecLists Wordlists</a></li>
+                    <li><a href="https://github.com/projectdiscovery/nuclei" target="_blank">Nuclei Scanner</a></li>
+                    <li><a href="https://www.metasploit.com/" target="_blank">Metasploit Framework</a></li>
+                    <li><a href="https://www.exploit-db.com/" target="_blank">Exploit-DB Repository</a></li>
+                    <li><a href="https://github.com/m4ll0k/AutoRecon" target="_blank">AutoRecon Script</a></li>
+                </ul>
+            </div>
+
+            <!-- Windows Privilege Escalation -->
+            <div class="card">
+                <h2>🪟 Windows PrivEsc</h2>
+                <ul>
+                    <li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings" target="_blank">PayloadsAllTheThings</a></li>
+                    <li><a href="https://lolbas-project.github.io/" target="_blank">LOLBAS Project</a></li>
+                    <li><a href="https://github.com/gentilkiwi/mimikatz/wiki" target="_blank">Mimikatz Guide</a></li>
+                    <li><a href="https://book.hacktricks.xyz/windows-hardening/windows-privilege-escalation" target="_blank">PrivEsc Cheatsheet</a></li>
+                    <li><a href="https://github.com/PowerShellMafia/PowerSploit" target="_blank">PowerSploit</a></li>
+                    <li><a href="https://github.com/Flangvik/SharpCollection" target="_blank">Sharp Tools Collection</a></li>
+                </ul>
+            </div>
+
+            <!-- Linux Privilege Escalation -->
+            <div class="card">
+                <h2>🐧 Linux PrivEsc</h2>
+                <ul>
+                    <li><a href="https://gtfobins.github.io/" target="_blank">GTFOBins - SUID/SUDO</a></li>
+                    <li><a href="https://github.com/carlospolop/PEASS-ng" target="_blank">LinPEAS Cheatsheet</a></li>
+                    <li><a href="https://book.hacktricks.xyz/linux-hardening/privilege-escalation" target="_blank">PrivEsc Cheatsheet</a></li>
+                    <li><a href="https://github.com/kernel-exploits/linux-kernel-exploits" target="_blank">Kernel Exploits</a></li>
+                    <li><a href="https://github.com/initstring/dirty_sock" target="_blank">Dirty Sock Exploit</a></li>
+                    <li><a href="https://github.com/mzet-/linux-exploit-suggester" target="_blank">Exploit Suggester</a></li>
+                </ul>
+            </div>
+
+            <!-- OSINT & Reconnaissance -->
+            <div class="card">
+                <h2>🔍 OSINT & Reconnaissance</h2>
+                <ul>
+                    <li><a href="https://osintframework.com/" target="_blank">OSINT Framework</a></li>
+                    <li><a href="https://censys.io/" target="_blank">Censys Search</a></li>
+                    <li><a href="https://www.shodan.io/" target="_blank">Shodan IoT Search</a></li>
+                    <li><a href="https://github.com/laramies/theHarvester" target="_blank">TheHarvester</a></li>
+                    <li><a href="https://www.maltego.com/" target="_blank">Maltego</a></li>
+                    <li><a href="https://www.spiderfoot.net/" target="_blank">SpiderFoot</a></li>
+                </ul>
+            </div>
+
+            <!-- Cloud & Container Security -->
+            <div class="card">
+                <h2>☁️ Cloud & Container Security</h2>
+                <ul>
+                    <li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/AWS" target="_blank">AWS Security</a></li>
+                    <li><a href="https://kubernetes.io/docs/concepts/security/" target="_blank">Kubernetes Security</a></li>
+                    <li><a href="https://docs.docker.com/engine/security/" target="_blank">Docker Security</a></li>
+                    <li><a href="https://github.com/aquasecurity/trivy" target="_blank">Trivy Scanner</a></li>
+                    <li><a href="https://github.com/aquasecurity/kube-bench" target="_blank">Kube-Bench</a></li>
+                    <li><a href="https://github.com/nccgroup/ScoutSuite" target="_blank">Scout Suite</a></li>
+                </ul>
+            </div>
+
+            <!-- Wireless & Physical Security -->
+            <div class="card">
+                <h2>📡 Wireless & Physical Security</h2>
+                <ul>
+                    <li><a href="https://www.aircrack-ng.org/" target="_blank">Aircrack-ng</a></li>
+                    <li><a href="https://github.com/bettercap/bettercap" target="_blank">Bettercap</a></li>
+                    <li><a href="https://github.com/dafthack/DomainPasswordSpray" target="_blank">Password Spraying</a></li>
+                    <li><a href="https://www.wifi-arsenal.com/" target="_blank">WiFi Arsenal</a></li>
+                    <li><a href="https://github.com/bluekitchen/btstack" target="_blank">Bluetooth Toolkit</a></li>
+                    <li><a href="https://github.com/evilsocket/pwnagotchi" target="_blank">Pwnagotchi</a></li>
+                </ul>
+            </div>
+
+            <!-- Frameworks & Standards -->
+            <div class="card">
+                <h2>📋 Frameworks & Standards</h2>
+                <ul>
+                    <li><a href="https://owasp.org/" target="_blank">OWASP Foundation</a></li>
+                    <li><a href="https://attack.mitre.org/" target="_blank">MITRE ATT&CK Framework</a></li>
+                    <li><a href="https://www.nist.gov/cyberframework" target="_blank">NIST Cybersecurity</a></li>
+                    <li><a href="https://www.cisecurity.org/" target="_blank">CIS Benchmarks</a></li>
+                    <li><a href="https://www.ptes.org/" target="_blank">Penetration Testing Execution Standard</a></li>
+                    <li><a href="https://www.open-std.org/jtc1/sc27/" target="_blank">ISO 27001/27002</a></li>
+                </ul>
+            </div>
+
+            <!-- Reverse Shell Generators -->
+            <div class="card">
+                <h2>💻 Reverse Shell Generators</h2>
+                <ul>
+                    <li><a href="https://www.revshells.com/" target="_blank">RevShells Generator</a></li>
+                    <li><a href="https://tex2e.github.io/reverse-shell-generator/index.html" target="_blank">Reverse Shell Generator</a></li>
+                    <li><a href="https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet" target="_blank">Reverse Shell Cheatsheet</a></li>
+                    <li><a href="https://giriaryan694-a11y.github.io/SQL-REVERSE-SHELL-GENERATOR/" target="_blank">SQL Reverse Shell Generator</a></li>
+                    <li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Reverse%20Shell" target="_blank">Reverse Shell Payloads</a></li>
+                    <li><a href="https://github.com/0dayCTF/reverse-shell" target="_blank">Reverse Shell Cheatsheet</a></li>
+                </ul>
+            </div>
+
+            <!-- Active Directory & Domain Exploitation -->
+            <div class="card">
+                <h2>👑 Active Directory Exploitation</h2>
+                <ul>
+                    <li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Methodology%20and%20Resources/Active%20Directory%20Attack" target="_blank">AD Attack Cheatsheet</a></li>
+                    <li><a href="https://book.hacktricks.xyz/windows-hardening/active-directory-methodology" target="_blank">AD Methodology</a></li>
+                    <li><a href="https://github.com/BloodHoundAD/BloodHound" target="_blank">BloodHound</a></li>
+                    <li><a href="https://github.com/PowerShellMafia/PowerSploit/blob/master/Recon/Invoke-ACLScanner.ps1" target="_blank">ACL Scanner</a></li>
+                    <li><a href="https://github.com/Flangvik/SharpKiller" target="_blank">SharpKiller - AV Bypass</a></li>
+                    <li><a href="https://github.com/GhostPack/Rubeus" target="_blank">Rubeus - Kerberoasting</a></li>
+                </ul>
+            </div>
+
+            <!-- Post-Exploitation & Lateral Movement -->
+            <div class="card">
+                <h2>↔️ Lateral Movement & Post-Exploitation</h2>
+                <ul>
+                    <li><a href="https://book.hacktricks.xyz/generic-methodologies-and-resources/lateral-movement" target="_blank">Lateral Movement Guide</a></li>
+                    <li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Methodology%20and%20Resources/Lateral%20Movement" target="_blank">Lateral Movement Payloads</a></li>
+                    <li><a href="https://github.com/carlospolop/hacktricks/tree/master/windows-hardening" target="_blank">Windows Post-Exploitation</a></li>
+                    <li><a href="https://github.com/GhostPack/SharpMove" target="_blank">SharpMove - Lateral Movement</a></li>
+                    <li><a href="https://github.com/BC-SECURITY/Starkiller" target="_blank">Starkiller C2</a></li>
+                    <li><a href="https://github.com/n0pe-sled/Bash-Bunny" target="_blank">Bash Bunny Scripts</a></li>
+                </ul>
+            </div>
+
+            <!-- Credential Dumping & Access -->
+            <div class="card">
+                <h2>🔐 Credential Dumping & Access</h2>
+                <ul>
+                    <li><a href="https://book.hacktricks.xyz/generic-methodologies-and-resources/credential-access" target="_blank">Credential Access Guide</a></li>
+                    <li><a href="https://github.com/gentilkiwi/mimikatz" target="_blank">Mimikatz</a></li>
+                    <li><a href="https://github.com/GhostPack/SafetyKatz" target="_blank">SafetyKatz - Mimikatz Bypass</a></li>
+                    <li><a href="https://github.com/outflanknl/C2-Tool-Collection" target="_blank">C2 Dumper Collection</a></li>
+                    <li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Methodology%20and%20Resources/Credential%20Dumping" target="_blank">Credential Dumping Methods</a></li>
+                    <li><a href="https://github.com/BC-SECURITY/Empire" target="_blank">Empire - PowerShell C2</a></li>
+                </ul>
+            </div>
+
+            <!-- Persistence & Backdoors -->
+            <div class="card">
+                <h2>🔄 Persistence & Backdoors</h2>
+                <ul>
+                    <li><a href="https://book.hacktricks.xyz/generic-methodologies-and-resources/persistence" target="_blank">Persistence Techniques</a></li>
+                    <li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Methodology%20and%20Resources/Persistence" target="_blank">Persistence Payloads</a></li>
+                    <li><a href="https://github.com/three0s/backdoor-apk" target="_blank">APK Backdoor</a></li>
+                    <li><a href="https://github.com/bettercap/bettercap" target="_blank">Bettercap MITM</a></li>
+                    <li><a href="https://github.com/CoreSecurity/Impacket" target="_blank">Impacket Suite</a></li>
+                    <li><a href="https://github.com/Jai-Nix/web-persistence" target="_blank">Web Persistence</a></li>
+                </ul>
+            </div>
+
+            <!-- Command & Control (C2) -->
+            <div class="card">
+                <h2>🎮 Command & Control (C2)</h2>
+                <ul>
+                    <li><a href="https://github.com/BC-SECURITY/Empire" target="_blank">Empire</a></li>
+                    <li><a href="https://github.com/fortra/cobaltstrike" target="_blank">Cobalt Strike</a></li>
+                    <li><a href="https://github.com/Slackadays/Clipboard" target="_blank">Clipboard Manager</a></li>
+                    <li><a href="https://github.com/infosecn1nja/Red-Teaming-Toolkit" target="_blank">Red Team Toolkit</a></li>
+                    <li><a href="https://github.com/outflanknl/C2-Tool-Collection" target="_blank">C2 Collection</a></li>
+                    <li><a href="https://github.com/moheshmohan/Powershell-Practice-online" target="_blank">PowerShell C2 Scripts</a></li>
+                </ul>
+            </div>
+
+            <!-- Web Shells & RCE -->
+            <div class="card">
+                <h2>🐚 Web Shells & RCE</h2>
+                <ul>
+                    <li><a href="https://github.com/tennc/webshell" target="_blank">Web Shell Collection</a></li>
+                    <li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Web%20Shells" target="_blank">PayloadsAllTheThings Shells</a></li>
+                    <li><a href="https://github.com/BlackArch/webshells" target="_blank">BlackArch Web Shells</a></li>
+                    <li><a href="https://pentestmonkey.net/tools/web-shells/php-reverse-shell" target="_blank">PHP Reverse Shell</a></li>
+                    <li><a href="https://github.com/epinna/weevely3" target="_blank">Weevely Stealth Shell</a></li>
+                    <li><a href="https://github.com/mIchaelw0w/Reverse-Shell-Hub" target="_blank">Reverse Shell Hub</a></li>
+                </ul>
+            </div>
+
+            <!-- Free Online Cloud Computers -->
+            <div class="card">
+                <h2>☁️ Free Online Cloud Computers</h2>
+                <ul>
+                    <li><a href="https://www.onworks.net/os-distributions/debian-based/free-kali-linux-online" target="_blank">OnWorks - Kali Linux</a></li>
+                    <li><a href="https://www.onworks.net/component/content/article?id=65726:free-parrot-security-os-online" target="_blank">OnWorks - Parrot Security OS</a></li>
+                    <li><a href="https://www.onworks.net/" target="_blank">OnWorks - All Distros</a></li>
+                    <li><a href="https://shell.cloud.google.com/" target="_blank">Google Cloud Shell</a></li>
+                    <li><a href="https://colab.research.google.com/" target="_blank">Google Colab - Notebooks</a></li>
+                    <li><a href="https://www.replit.com/" target="_blank">Replit - Online IDE</a></li>
+                    <li><a href="https://gitpod.io/" target="_blank">Gitpod - Cloud Workspace</a></li>
+                </ul>
+            </div>
+
+            <!-- Password & Hash Cracking -->
+            <div class="card">
+                <h2>🔓 Password & Hash Cracking</h2>
+                <ul>
+                    <li><a href="https://crackstation.net/" target="_blank">CrackStation - Fast Hash Lookup</a></li>
+                    <li><a href="https://www.onlinehashcrack.com/" target="_blank">OnlineHashCrack - Cloud GPU</a></li>
+                    <li><a href="https://hashkiller.io/" target="_blank">HashKiller - Community Tables</a></li>
+                    <li><a href="https://hashes.com/" target="_blank">Hashes.com - Hash Lookup</a></li>
+                    <li><a href="https://weakpass.com/" target="_blank">WeakPass - Wordlists</a></li>
+                    <li><a href="https://hashcat.net/hashcat/" target="_blank">Hashcat - GPU Cracking</a></li>
+                </ul>
+            </div>
+
+            <!-- Utility & Bypass Tools -->
+            <div class="card">
+                <h2>🛠️ Utility & Bypass Tools</h2>
+                <ul>
+                    <li><a href="https://github.com/giriaryan694-a11y/Uncopyable-Text-Bypass" target="_blank">Uncopyable Text Bypass</a></li>
+                    <li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings" target="_blank">PayloadsAllTheThings</a></li>
+                    <li><a href="https://github.com/m4ll0k/AutoRecon" target="_blank">AutoRecon - Auto Scanner</a></li>
+                    <li><a href="https://github.com/carlospolop/PEASS-ng" target="_blank">PEASS-ng Suite</a></li>
+                    <li><a href="https://github.com/projectdiscovery/nuclei" target="_blank">Nuclei - Fast Scanner</a></li>
+                    <li><a href="https://github.com/danielmiessler/SecLists" target="_blank">SecLists - Wordlists</a></li>
+                </ul>
+            </div>
+
+            <!-- Learning Platforms -->
+            <div class="card">
+                <h2>🎓 Learning Platforms</h2>
+                <ul>
+                    <li><a href="https://www.hackthebox.com/" target="_blank">HackTheBox</a></li>
+                    <li><a href="https://tryhackme.com/" target="_blank">TryHackMe</a></li>
+                    <li><a href="https://pentesterlab.com/" target="_blank">PentesterLab</a></li>
+                    <li><a href="https://www.portswigger.net/web-security" target="_blank">PortSwigger Labs</a></li>
+                    <li><a href="https://giriaryan694-a11y.github.io/Ref_XSS" target="_blank">DOM XSS Learning Lab</a></li>
+                    <li><a href="https://picoctf.org/" target="_blank">picoCTF</a></li>
+                </ul>
             </div>
         </div>
 
-        <!-- Internet Asset Search Engines -->
-        <div class="category-section">
-            <h2>🌐 Internet Asset Search Engines</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <div class="badge">Device Search</div>
-                    <h3>Shodan</h3>
-                    <p>Premier search engine for internet-connected devices and services - webcams, routers, ICS systems, servers, and IoT devices with real-time data</p>
-                    <a href="https://www.shodan.io/" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Asset Discovery</div>
-                    <h3>Censys</h3>
-                    <p>Attack surface management platform combining certificate transparency logs and IPv4 scans with advanced filtering for SSL/TLS analysis</p>
-                    <a href="https://censys.com" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Internet Intelligence</div>
-                    <h3>Netlas</h3>
-                    <p>Advanced internet intelligence platform with team collaboration features - discover domains, IPs, DNS records, open ports, and services</p>
-                    <a href="https://netlas.io" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Cyberspace Search</div>
-                    <h3>FOFA</h3>
-                    <p>Chinese-developed cyberspace search engine with advanced fingerprinting - indexes over 4 billion assets with 350,000+ fingerprint rules</p>
-                    <a href="https://en.fofa.info/" target="_blank">Visit Tool →</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Certificate & Domain Discovery -->
-        <div class="category-section">
-            <h2>🔐 Certificate & Domain Discovery</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <div class="badge">Certificate DB</div>
-                    <h3>crt.sh</h3>
-                    <p>Certificate Transparency search engine by Comodo - discover subdomains through SSL certificate logs with JSON output support</p>
-                    <a href="https://crt.sh" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Domain Lookup</div>
-                    <h3>Whois.net</h3>
-                    <p>Quick WHOIS lookups for domain registration details, registrar information, and domain ownership data</p>
-                    <a href="https://whois.net" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Official Registry</div>
-                    <h3>ICANN WHOIS</h3>
-                    <p>Official ICANN domain registry lookup service for authoritative domain registration information</p>
-                    <a href="https://lookup.icann.org" target="_blank">Visit Tool →</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Network & IP Intelligence -->
-        <div class="category-section">
-            <h2>🌍 Network & IP Intelligence</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <div class="badge">BGP Routing</div>
-                    <h3>BGP.he.net</h3>
-                    <p>Hurricane Electric BGP toolkit - AS number lookup, IP prefix analysis, peering information, and network infrastructure mapping</p>
-                    <a href="https://bgp.he.net" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Geolocation</div>
-                    <h3>IPinfo</h3>
-                    <p>IP geolocation and organization data with ASN information, hosting details, and company attribution</p>
-                    <a href="https://ipinfo.io" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">IP Analysis</div>
-                    <h3>IP Quality Score</h3>
-                    <p>IP address investigation and reputation checking with fraud detection and proxy/VPN identification</p>
-                    <a href="https://www.ipqualityscore.com" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Abuse Reports</div>
-                    <h3>AbuseIPDB</h3>
-                    <p>Community-driven IP reputation database with abuse reports, blacklist checking, and threat intelligence</p>
-                    <a href="https://www.abuseipdb.com" target="_blank">Visit Tool →</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Technology & Web Fingerprinting -->
-        <div class="category-section">
-            <h2>🔧 Technology & Web Fingerprinting</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <div class="badge">Tech Stack</div>
-                    <h3>Wappalyzer</h3>
-                    <p>Identify web technologies, frameworks, CMS, analytics tools, and JavaScript libraries used on websites</p>
-                    <a href="https://www.wappalyzer.com" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Tech Profiling</div>
-                    <h3>BuiltWith</h3>
-                    <p>Technology profiling and website analysis - discover hosting, frameworks, widgets, and technology trends</p>
-                    <a href="https://builtwith.com" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Fingerprinting</div>
-                    <h3>WhatWeb</h3>
-                    <p>Detect web technologies, web servers, version numbers, email addresses, and account IDs through HackerTarget</p>
-                    <a href="https://hackertarget.com/whatweb-scan" target="_blank">Visit Tool →</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Multi-Tool Security Platforms -->
-        <div class="category-section">
-            <h2>🛠️ Multi-Tool Security Platforms</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <div class="badge">OSINT Suite</div>
-                    <h3>HackerTarget</h3>
-                    <p>Complete suite of online security tools - DNS lookup, reverse DNS, traceroute, subnet calculator, port scanning, and more</p>
-                    <a href="https://hackertarget.com" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Pentest Suite</div>
-                    <h3>Pentest-Tools</h3>
-                    <p>All-in-one penetration testing suite with passive reconnaissance, network scanning, and security analysis capabilities</p>
-                    <a href="https://pentest-tools.com" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Multi-Tool</div>
-                    <h3>Geekflare Toolbox</h3>
-                    <p>Comprehensive collection of security testing and website analysis tools - DNS, SSL, headers, and performance testing</p>
-                    <a href="https://geekflare.com/tools/toolbox" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Site Analysis</div>
-                    <h3>DomSignal</h3>
-                    <p>All-in-one website analysis and security testing platform with multiple diagnostic and monitoring tools</p>
-                    <a href="https://domsignal.com/" target="_blank">Visit Tool →</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- SSL/TLS Security Testing -->
-        <div class="category-section">
-            <h2>🔒 SSL/TLS Security Testing</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <div class="badge">TLS Analysis</div>
-                    <h3>SSL Labs</h3>
-                    <p>Qualys deep TLS/SSL configuration analysis with A-F grading - comprehensive cipher suite testing and vulnerability detection</p>
-                    <a href="https://www.ssllabs.com/ssltest/" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">TLS Grader</div>
-                    <h3>CryptCheck</h3>
-                    <p>Alternate TLS configuration grader with detailed cipher analysis, protocol scoring, and best practice recommendations</p>
-                    <a href="https://cryptcheck.fr/" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Security Posture</div>
-                    <h3>Hardenize</h3>
-                    <p>Comprehensive security posture reports covering DNS security, certificates, email security, and web application headers</p>
-                    <a href="https://www.hardenize.com/" target="_blank">Visit Tool →</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Web Security & Headers -->
-        <div class="category-section">
-            <h2>🛡️ Web Security & Header Analysis</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <div class="badge">Security Headers</div>
-                    <h3>SecurityHeaders.com</h3>
-                    <p>Quick A-F grading for security headers - CSP, HSTS, X-Frame-Options, X-Content-Type, and Referrer-Policy analysis</p>
-                    <a href="https://securityheaders.com/" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Mozilla Security</div>
-                    <h3>Mozilla Observatory</h3>
-                    <p>Comprehensive security analysis including headers, TLS configuration, cookies, and actionable security recommendations</p>
-                    <a href="https://developer.mozilla.org/en-US/observatory" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Privacy Audit</div>
-                    <h3>Webbkoll</h3>
-                    <p>Privacy-focused header and tracker analysis - assess website privacy posture, third-party requests, and cookie usage</p>
-                    <a href="https://webbkoll.5july.net/en/" target="_blank">Visit Tool →</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Vulnerability & Security Scanning -->
-        <div class="category-section">
-            <h2>🔍 Vulnerability & Security Scanning</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <div class="badge">Vuln Scanner</div>
-                    <h3>Nikto Online</h3>
-                    <p>Online front-end to Nikto scanner for server security checks - detects outdated software, misconfigurations, and security issues</p>
-                    <a href="https://nikto.online/" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Malware Scanner</div>
-                    <h3>SiteCheck (Sucuri)</h3>
-                    <p>Free remote malware scanner - blacklist checking, known CMS vulnerabilities, and website infection detection</p>
-                    <a href="https://sitecheck.sucuri.net/" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Security Scanner</div>
-                    <h3>CyberScan</h3>
-                    <p>Comprehensive website security scanner with vulnerability detection, threat analysis, and compliance checking</p>
-                    <a href="https://www.cyberscan.io/en" target="_blank">Visit Tool →</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Email & Personnel Discovery -->
-        <div class="category-section">
-            <h2>👥 Email & Personnel Discovery</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <div class="badge">Email Finding</div>
-                    <h3>Hunter.io</h3>
-                    <p>Find company employee email addresses - pattern recognition, verification scoring, and domain email discovery</p>
-                    <a href="https://hunter.io" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Contact DB</div>
-                    <h3>RocketReach</h3>
-                    <p>Professional contact database - email and phone number discovery with social profile linking</p>
-                    <a href="https://rocketreach.co" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Email Verification</div>
-                    <h3>Email Finder Tools</h3>
-                    <p>Verify and find email addresses - check deliverability, MX records, and email format validation</p>
-                    <a href="https://mailtester.com" target="_blank">Visit Tool →</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Malware Analysis & Sandboxing -->
-        <div class="category-section">
-            <h2>🦠 Malware Analysis & Sandboxing</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <div class="badge">Multi-Engine</div>
-                    <h3>VirusTotal</h3>
-                    <p>Analyze files, URLs, and domains using 70+ antivirus engines - aggregated malware detection with community intelligence</p>
-                    <a href="https://www.virustotal.com" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Interactive Sandbox</div>
-                    <h3>ANY.RUN</h3>
-                    <p>Interactive malware sandbox - real-time Windows/Linux analysis with user interaction, network monitoring, and IOC extraction</p>
-                    <a href="https://any.run" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Behavioral Analysis</div>
-                    <h3>Hybrid Analysis</h3>
-                    <p>Free automated malware analysis by CrowdStrike - behavioral insights, MITRE ATT&CK mapping, and threat intelligence</p>
-                    <a href="https://www.hybrid-analysis.com" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Advanced Sandbox</div>
-                    <h3>Joe Sandbox</h3>
-                    <p>Advanced malware analysis sandbox - deep inspection with anti-evasion, behavior monitoring, and comprehensive reporting</p>
-                    <a href="https://www.joesandbox.com" target="_blank">Visit Tool →</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Data Breach & Reputation -->
-        <div class="category-section">
-            <h2>🔐 Data Breach & Reputation Checking</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <div class="badge">Breach Check</div>
-                    <h3>Have I Been Pwned</h3>
-                    <p>Check if email addresses or passwords have been compromised in data breaches - 12+ billion breached accounts</p>
-                    <a href="https://haveibeenpwned.com" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Leaked Data</div>
-                    <h3>DeHashed</h3>
-                    <p>Search leaked database records - credential discovery across millions of breached databases (paid service)</p>
-                    <a href="https://www.dehashed.com" target="_blank">Visit Tool →</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Historical Data & Archives -->
-        <div class="category-section">
-            <h2>📚 Historical Data & Web Archives</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <div class="badge">Web Archive</div>
-                    <h3>Wayback Machine</h3>
-                    <p>Internet Archive - historical snapshots of websites over time with 866+ billion web pages archived since 1996</p>
-                    <a href="https://web.archive.org" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">URL Scanning</div>
-                    <h3>URLScan</h3>
-                    <p>URL and website scanning with screenshot captures - DOM analysis, network requests, and security assessment</p>
-                    <a href="https://urlscan.io" target="_blank">Visit Tool →</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- OSINT Frameworks & Automation -->
-        <div class="category-section">
-            <h2>⚙️ OSINT Frameworks & Automation</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <div class="badge">Visualization</div>
-                    <h3>Maltego</h3>
-                    <p>Data visualization and OSINT platform - graph-based link analysis, relationship mapping, and transform framework</p>
-                    <a href="https://www.maltego.com" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Automation</div>
-                    <h3>SpiderFoot</h3>
-                    <p>Automated OSINT collection - 200+ modules for reconnaissance, data correlation, and threat intelligence gathering</p>
-                    <a href="https://www.spiderfoot.net" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Framework</div>
-                    <h3>theHarvester</h3>
-                    <p>Email, subdomain, and host discovery from public sources - OSINT gathering tool for penetration testing</p>
-                    <a href="https://github.com/laramies/theHarvester" target="_blank">Visit Tool →</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Search & Advanced Queries -->
-        <div class="category-section">
-            <h2>🔎 Search Engines & Advanced Queries</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <div class="badge">Google Dorks</div>
-                    <h3>Google Hacking Database</h3>
-                    <p>Curated collection of Google dorks for passive information gathering - search operators for exposed data discovery</p>
-                    <a href="https://www.exploit-db.com/google-hacking-database" target="_blank">Visit Tool →</a>
-                </div>
-                <div class="tool-card">
-                    <div class="badge">Advanced Search</div>
-                    <h3>Shodan Filters</h3>
-                    <p>Advanced search syntax and filters for finding specific internet-connected assets and services</p>
-                    <a href="https://www.shodan.io" target="_blank">Visit Tool →</a>
-                </div>
-            </div>
-        </div>
-        
         <footer>
-            <p>🛡️ ARY Recon - Your Complete Passive Reconnaissance Toolkit</p>
-            <p>⚠️ Use responsibly and ethically. Always verify authorization before conducting reconnaissance.</p>
-            <p style="margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 15px;">Made By Aryan Giri</p>
+            <div class="footer-text">Made by Aryan Giri</div>
+            <div class="footer-repo">RedTeam Arsenal - Your Complete Pentest Cheatsheets Hub | Last Updated: 2025</div>
         </footer>
     </div>
 </body>
